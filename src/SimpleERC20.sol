@@ -2,10 +2,10 @@
 pragma solidity ^0.8.13;
 
 contract SimpleERC20 {
-    string name;
-    string symbol;
-    uint8 immutable decimals;
-    uint256 immutable totalSupply;
+    string public name;
+    string public symbol;
+    uint8 public immutable decimals;
+    uint256 public immutable totalSupply;
 
     mapping(address => uint256) private _balances;
     // Allowances mapping: owner => spender => amount
@@ -26,11 +26,11 @@ contract SimpleERC20 {
     error InsufficientBalance(uint256 requested, uint256 available);
     error InsufficientAllowance(uint256 requested, uint256 available);
 
-    function balanceOf(address owner) public view returns (uint256 balance) {
+    function balanceOf(address owner) external view returns (uint256 balance) {
         return _balances[owner];
     }
 
-    function transfer(address to, uint256 value) public returns (bool success) {
+    function transfer(address to, uint256 value) external returns (bool success) {
         uint256 balance = _balances[msg.sender];
         require(balance >= value, InsufficientBalance(value, balance));
         _balances[msg.sender] = balance - value;
@@ -39,7 +39,7 @@ contract SimpleERC20 {
         return true;
     }
 
-    function transferFrom(address from, address to, uint256 value) public returns (bool success) {
+    function transferFrom(address from, address to, uint256 value) external returns (bool success) {
         uint256 allowance = _allowances[from][msg.sender];
         require(allowance >= value, InsufficientAllowance(value, allowance));
         uint256 balance = _balances[from];
@@ -52,13 +52,13 @@ contract SimpleERC20 {
         return true;
     }
 
-    function approve(address spender, uint256 value) public returns (bool success) {
+    function approve(address spender, uint256 value) external returns (bool success) {
         _allowances[msg.sender][spender] = value;
         emit Approval(msg.sender, spender, value);
         return true;
     }
 
-    function allowance(address owner, address spender) public view returns (uint256 remaining) {
+    function allowance(address owner, address spender) external view returns (uint256 remaining) {
         return _allowances[owner][spender];
     }
 }
