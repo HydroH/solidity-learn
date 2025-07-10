@@ -3,7 +3,7 @@ pragma solidity ^0.8.13;
 
 contract SimpleERC20 {
     string private _name;
-    string private _symbol; 
+    string private _symbol;
     uint8 private _decimals;
     uint256 private _totalSupply;
 
@@ -11,12 +11,7 @@ contract SimpleERC20 {
     // Allowances mapping: owner => spender => amount
     mapping(address => mapping(address => uint256)) private _allowances;
 
-    constructor(
-        string memory name_,
-        string memory symbol_,
-        uint8 decimals_,
-        uint256 totalSupply_
-    ) {
+    constructor(string memory name_, string memory symbol_, uint8 decimals_, uint256 totalSupply_) {
         _name = name_;
         _symbol = symbol_;
         _decimals = decimals_;

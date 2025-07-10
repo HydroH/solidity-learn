@@ -12,7 +12,7 @@ contract SimpleERC20Script is Script {
     function run() public {
         vm.startBroadcast();
 
-        erc20 = new SimpleERC20("Simple ERC20", "SIMPLE", 18, 1000000 * 10**18);
+        erc20 = new SimpleERC20("Simple ERC20", "SIMPLE", 18, 1000000 * 10 ** 18);
 
         vm.stopBroadcast();
     }
