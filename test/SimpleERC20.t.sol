@@ -11,7 +11,7 @@ contract SimpleERC20Test is Test {
         token = new SimpleERC20("Test Token", "TEST", 18, 100);
     }
 
-    function testConstruct() public {
+    function testConstruct() public view {
         assertEq(token.name(), "Test Token");
         assertEq(token.symbol(), "TEST");
         assertEq(token.decimals(), 18);
